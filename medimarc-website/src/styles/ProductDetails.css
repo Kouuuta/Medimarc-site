@@ -1,0 +1,180 @@
+/* ProductDetails.css */
+
+/* Container for the product details page */
+.product-details-container {
+  padding: 1rem;
+  margin-top: 50px; /* Adjusted margin-top for better alignment */
+  max-width: 1200px;
+ 
+}
+.product-list-details-container {
+  margin-left: 50px;
+  height: 100%;
+  width: 100%;
+}
+
+/* General container for the content */
+.containers-details {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Ensure it fits the screen width */
+  max-width: 1150px;
+  margin-top: 110px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+}
+
+/* Back button style */
+.back-button {
+  display: flex;
+  align-items: center;
+  color: #3b82f6;
+  margin-bottom: 2.5rem;
+  transition: color 0.2s ease;
+  border: none;
+  font-size: 15px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  color: #1d4ed8;
+}
+
+.back-icon {
+  margin-right: 0.25rem;
+}
+
+/* Main content layout */
+.product-details-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .product-details-content {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-top: 0;
+  }
+}
+
+/* Product image card */
+.product-image-container {
+  width: 100%;
+  max-width: 350px;
+  margin-bottom: 1.5rem;
+}
+
+.product-image-card {
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #f3f4f6;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+}
+
+.category-image {
+  max-height: 200px;
+  object-fit: contain;
+  width: 300px;
+}
+
+/* Category name */
+.category-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-top: 1rem;
+}
+
+/* Product list section */
+.product-list-container {
+  width: 100%;
+  
+}
+
+.product-list-card {
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #f3f4f6;
+  padding: 1.5rem;
+  margin-right: 40px;  
+}
+
+.product-list-header {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+/* Product list items */
+.product-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.product-item {
+  padding: 0.5rem;
+  background-color: #f3f4f6;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease;
+  border: 1px solid #e5e7eb;
+}
+
+.product-item:hover {
+  background-color: #bfdbfe;
+}
+
+.product-item-name {
+  color: #374151;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .product-details-content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product-image-container {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .product-list-container {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 1rem;
+  }
+
+  .containers-details {
+    width: 90%;
+    padding: 1rem;
+  }
+
+}

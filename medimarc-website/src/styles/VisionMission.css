@@ -1,0 +1,117 @@
+.vision-mission-container {
+  margin-top: 6rem;
+  margin-bottom: 6rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 1s ease-out;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-left,
+.section-right,
+.section-right2 {
+  max-width: 100%;
+}
+
+.section-left {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 2.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 20px 50px #e2cbff;
+  transition: all 0.3s ease;
+}
+
+.section-left:hover {
+  box-shadow: 0 20px 50px #a763ff;
+}
+
+.section-left h2 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  background: #4b5563;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 1rem;
+}
+
+.section-left .underline {
+  width: 6rem;
+  height: 0.25rem;
+  background: #2563eb;
+  border-radius: 0.25rem;
+  margin-bottom: 2rem;
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.section-left:hover .underline {
+  transform: scaleX(1.1);
+}
+
+.section-left p {
+  color: #4a5568;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+
+.section-right img,
+.section-right2 img {
+  border-radius: 1rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  background-color: white;
+  -webkit-box-reflect: below 0px linear-gradient(transparent, transparent 50%, rgba(0,0,0,0.2) 100%);
+}
+
+.section-right img:hover,
+.section-right2 img:hover {
+  transform: scale(1.02);
+}
+
+
+@media (min-width: 768px) {
+  .section {
+    flex-direction: row;
+    gap: 3rem;
+    width: 100%;
+  }
+
+  .section-left,
+  .section-right,
+  .section-right2 {
+    width: 50%;
+  }
+
+  .section-right {
+    order: -1;
+  }
+
+  .section-right2 {
+    order: 1;  /* This places the first image on the right */
+  }
+}
+
+@media (max-width: 600px) {
+  .section-left,
+  .section-right,
+  .section-right2 {
+    width: 90%;
+  }
+}

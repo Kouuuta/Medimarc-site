@@ -1,0 +1,175 @@
+/* Navbar.css */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    transition: all 0.3s;
+  }
+  
+  .navbar.not-scrolled {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+  }
+  
+  .navbar.scrolled {
+    background-color: rgb(179, 176, 176);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 0.75rem 0;
+  }
+  
+  .navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo-text {
+    font-size: 2rem;
+    font-weight: bold;
+    background-image: linear-gradient(to right, #3b82f6, #9333ea);
+    background-clip: text;
+    color: transparent;
+    display: flex;
+    align-items: center;
+  }
+  
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  .nav-link {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #4b5563;
+    position: relative;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .nav-link:hover {
+    color: #b37aff;
+  }
+  
+  .nav-link-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0.125rem;
+    background-color: #b37aff;;
+    transition: width 0.3s;
+  }
+  
+  .nav-link:hover .nav-link-underline {
+    width: 100%;
+    
+  }
+  
+  .contact-button {
+    background-color: #b37aff;
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.375rem;
+    transition: background-color 0.3s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .contact-button:hover {
+    background-color: #b37aff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .mobile-menu-button {
+    display: none;
+    background: none; /* Remove background */
+    border: none; /* Remove border */
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: transform 0.3s ease-in-out; /* Smooth animation */
+  }
+  
+  .mobile-menu-button:focus {
+    outline: none; /* Remove focus outline */
+  }
+  
+  .mobile-menu-button .lucide-menu { 
+    color: #4b5563; /* Set color for MenuIcon */
+    font-size: 2rem; /* Increase size */
+    transition: transform 0.3s ease, color 0.3s ease; /* Smooth color transition and animation */
+  }
+  
+  .mobile-menu-button:hover .lucide-menu {
+    color: #b37aff; /* Change color on hover */
+    transform: scale(1.1); /* Slightly increase size when hovered */
+  }
+  
+  .mobile-menu-button:active .lucide-menu {
+    transform: rotate(90deg); /* Rotate 90deg on click */
+  }
+  
+  .mobile-nav {
+    display: none;
+    background-color: white;
+    border-top: 1px solid #e5e7eb;
+  }
+  
+  .mobile-nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    padding-top: 1rem;
+  }
+  
+  .mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .mobile-nav-link {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #4b5563;
+    text-decoration: none;
+  }
+  
+  .mobile-nav-link:hover {
+    color: #b37aff;
+    ;
+  }
+  
+  .contact-button-mobile {
+    background-color: #b37aff;
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.375rem;
+    transition: background-color 0.3s;
+  }
+  
+  .contact-button-mobile:hover {
+    background-color: #b37aff;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .mobile-menu-button {
+      display: block;
+    }
+  
+    .desktop-nav {
+      display: none;
+    }
+  
+    .mobile-nav {
+      display: block;
+    }
+  }
+  

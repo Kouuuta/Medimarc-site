@@ -1,0 +1,101 @@
+/* AboutUs.css */
+
+.aboutus-section {
+    padding-top: 4rem;
+    
+  }
+  
+  .aboutus-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .aboutus-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .aboutus-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #4b5563;
+    margin-bottom: 1rem;
+  }
+  
+  .aboutus-title-underline {
+    width: 6rem;
+    height: 2px;
+    background-color: #2563eb;
+    margin: 0 auto;
+  }
+  
+  .aboutus-card {
+
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .tabs-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .tab-button {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #4b5563;
+    background-color: #f3f4f6;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .tab-button:hover {
+    background-color: #e5e7eb;
+  }
+  
+  .tab-button.active {
+    background-color: #b37aff;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .tab-content {
+    padding: 2rem;
+  }
+  
+  .aboutus-content {
+    max-width: 45rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .aboutus-description {
+    color: #6b7280;
+    line-height: 1.75;
+  }
+  
+  .aboutus-highlight {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(to right, #bfdbfe, #e0f2fe);
+    border-radius: 0.75rem;
+  }
+  
+  .highlight-text {
+    color: #374151;
+    font-weight: 500;
+  }
+  
+  .highlight-title {
+    color: #3b82f6;
+    font-weight: 700;
+  }
+  

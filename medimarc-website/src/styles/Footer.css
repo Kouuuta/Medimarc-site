@@ -1,0 +1,130 @@
+/* Footer.css */
+
+.footer-container {
+    background-color: #1f2937;
+    color: white;
+    height: 100%;
+  }
+  
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+  }
+  
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr ;
+      gap: 400px;
+    }
+  }
+  
+  .footer-logo {
+    font-size: 1.25rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+  
+  .footer-logo-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: linear-gradient(to right, #3b82f6, #9333ea);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  
+  .footer-description {
+    color: #9ca3af;
+    margin-bottom: 1rem;
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .social-icon {
+    display: inline-flex;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+  }
+  
+  .social-icon:hover {
+    background-color: #4b5563;
+  }
+  
+  .icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  .footer-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-links,
+  .footer-contact {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-link {
+    display: flex;
+    align-items: center;
+    color: #9ca3af;
+    transition: color 0.3s;
+  }
+  
+  .footer-link:hover {
+    color: white;
+  }
+  
+  .link-icon {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+  }
+  
+  .footer-contact .contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .contact-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.5rem;
+    color: #3b82f6;
+  }
+  
+  .contact-text {
+    color: #9ca3af;
+  }
+  
+  .footer-bottom {
+    border-top: 1px solid #4b5563;
+    padding-top: 1rem;
+    text-align: center;
+    color: #9ca3af;
+  }
+  
