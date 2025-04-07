@@ -117,10 +117,27 @@
   }
   
   .mobile-nav {
-    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
     background-color: white;
     border-top: 1px solid #e5e7eb;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    z-index: 40;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   }
+  
+  .mobile-nav.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  
   
   .mobile-nav-container {
     max-width: 1200px;

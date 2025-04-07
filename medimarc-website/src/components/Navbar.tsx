@@ -58,27 +58,41 @@ const Navbar = () => {
         </button>
       </div>
       {/* Mobile Navigation */}
-      {isMobileMenuOpen && (
-        <div className="mobile-nav">
-          <div className="mobile-nav-container">
-            <nav className="mobile-nav-links">
-              <a href="/#" className="nav-link">
-                Home
-                <div className="nav-link-underline"></div>
-              </a>
-              <RouterLink to="/products" className="mobile-nav-link">
-                Products
-              </RouterLink>
-              <a href="/#about-us" className="mobile-nav-link">
-                About Us
-              </a>
-              <a href="/#contact-us" className="mobile-nav-link">
-                Contact
-              </a>
-            </nav>
-          </div>
+      <div className={`mobile-nav ${isMobileMenuOpen ? "open" : ""}`}>
+        <div className="mobile-nav-container">
+          <nav className="mobile-nav-links">
+            <a
+              href="/#"
+              className="nav-link"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Home
+              <div className="nav-link-underline"></div>
+            </a>
+            <RouterLink
+              to="/products"
+              className="mobile-nav-link"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Products
+            </RouterLink>
+            <a
+              href="/#about-us"
+              className="mobile-nav-link"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              About Us
+            </a>
+            <a
+              href="/#contact-us"
+              className="mobile-nav-link"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Contact
+            </a>
+          </nav>
         </div>
-      )}
+      </div>
     </header>
   );
 };
