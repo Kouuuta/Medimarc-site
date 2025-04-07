@@ -78,6 +78,7 @@
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    text-decoration: none;
   }
   
   .add-to-cart-button:hover {

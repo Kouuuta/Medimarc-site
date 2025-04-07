@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import "../styles/AboutUs.css"; // Adjusted path
 import VisionMission from "../components/VisionMission";
 
@@ -77,16 +79,30 @@ const tabs = [
 ];
 
 const AboutUs = () => {
+  useEffect(() => {
+    AOS.init({ duration: 800 });
+  }, []);
+
   const [activeTab, setActiveTab] = useState("history");
   return (
     <section className="aboutus-section">
-      <div className="aboutus-container">
+      <div className="aboutus-container" data-aos="fade-up">
         <div className="aboutus-header">
-          <h2 className="aboutus-title">About Us</h2>
-          <div className="aboutus-title-underline"></div>
+          <h2 className="aboutus-title" data-aos="fade-up">
+            About Us
+          </h2>
+          <div
+            className="aboutus-title-underline"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          ></div>
         </div>
         <div className="aboutus-card">
-          <div className="tabs-container">
+          <div
+            className="tabs-container"
+            data-aos="zoom-in"
+            data-aos-delay="200"
+          >
             {tabs.map((tab) => (
               <button
                 key={tab.id}
@@ -97,7 +113,7 @@ const AboutUs = () => {
               </button>
             ))}
           </div>
-          <div className="tab-content">
+          <div className="tab-content" data-aos="fade-up">
             {tabs.find((tab) => tab.id === activeTab)?.content}
           </div>
         </div>

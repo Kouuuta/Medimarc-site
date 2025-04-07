@@ -44,7 +44,7 @@ const ProductList: React.FC<ProductListProps> = () => {
             <SearchIcon className="search-icon" />
           </div>
         </div>
-        <div className="category-grid">
+        <div className="category-grid" data-aos="fade-up">
           {filteredCategories.map((category: Category) => (
             <div
               key={category.id}

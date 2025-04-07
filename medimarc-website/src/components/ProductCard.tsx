@@ -5,6 +5,7 @@ interface Product {
   name: string;
   description: string;
   image: string;
+  link: string;
 }
 
 interface ProductCardProps {
@@ -22,7 +23,14 @@ const ProductCard = ({ product }: ProductCardProps) => {
       <div className="text-container">
         <h3 className="product-title">{product.name}</h3>
         <p className="product-description">{product.description}</p>
-        <button className="add-to-cart-button"></button>
+        <a
+          href={product.link}
+          className="add-to-cart-button"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View Product
+        </a>
       </div>
     </div>
   );
