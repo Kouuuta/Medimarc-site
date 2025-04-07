@@ -5,7 +5,7 @@ interface Product {
   name: string;
   description: string;
   image: string;
-  link: string;
+  link?: string;
 }
 
 interface ProductCardProps {
