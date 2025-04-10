@@ -75,21 +75,27 @@ const Footer = () => {
           <div>
             <h3 className="footer-title">Contact Us</h3>
             <ul className="footer-contact">
-              <li className="contact-item">
-                <MapPin className="contact-icon" />
-                <span className="contact-text">
-                  Unit 303 M-Place Bldg, No. 96 Maginhawa, <br />
-                  St. Teachers Village, Quezon City
-                </span>
-              </li>
-              <li className="contact-item">
-                <Phone className="contact-icon" />
-                <span className="contact-text">+63 917 863 7544</span>
-              </li>
-              <li className="contact-item">
-                <Mail className="contact-icon" />
-                <span className="contact-text">medimarc.mrc@gmail.com</span>
-              </li>
+              <a href="https://www.google.com/maps/place/96+Maginhawa,+Diliman,+Lungsod+Quezon,+1101+Kalakhang+Maynila/@14.6462724,121.0595875,3a,90y,213.97h,95.01t/data=!3m7!1e1!3m5!1s4gHXprIrPEEyEtiTNhEpiQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-5.011025688878405%26panoid%3D4gHXprIrPEEyEtiTNhEpiQ%26yaw%3D213.97461207332043!7i16384!8i8192!4m15!1m8!3m7!1s0x3397b77381800257:0xba61bc9ea698eb59!2s96+Maginhawa,+Diliman,+Lungsod+Quezon,+1101+Kalakhang+Maynila!3b1!8m2!3d14.6461479!4d121.0595174!16s%2Fg%2F11kqgs9q7_!3m5!1s0x3397b77381800257:0xba61bc9ea698eb59!8m2!3d14.6461479!4d121.0595174!16s%2Fg%2F11kqgs9q7_?entry=ttu&g_ep=EgoyMDI1MDQwOC4wIKXMDSoASAFQAw%3D%3D">
+                <li className="contact-item">
+                  <MapPin className="contact-icon" />
+                  <span className="contact-text">
+                    Unit 303 M-Place Bldg, No. 96 Maginhawa, <br />
+                    St. Teachers Village, Quezon City
+                  </span>
+                </li>
+              </a>
+              <a href="tel:+639178637544">
+                <li className="contact-item">
+                  <Phone className="contact-icon" />
+                  <span className="contact-text">+63 917 863 7544</span>
+                </li>
+              </a>
+              <a href="https://mail.google.com/mail/u/0/#inbox?compose=new">
+                <li className="contact-item">
+                  <Mail className="contact-icon" />
+                  <span className="contact-text">medimarc.mrc@gmail.com</span>
+                </li>
+              </a>
             </ul>
           </div>
         </div>

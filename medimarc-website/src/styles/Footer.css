@@ -109,6 +109,7 @@
     align-items: center;
     margin-bottom: 1rem;
   }
+
   
   .contact-icon {
     width: 1.25rem;
@@ -119,6 +120,10 @@
   
   .contact-text {
     color: #9ca3af;
+  }
+  .contact-text:hover {
+    color: white;
+ 
   }
   
   .footer-bottom {
