@@ -1,77 +1,111 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import { Search } from "lucide-react";
-import { productCategories } from "../data/product";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { Search, ArrowRight } from "lucide-react";
+import { SectionHeading } from "../components/ui/SectionHeading";
+import { categories } from "../data/products";
+import { pageTransition, stagger, fadeUp } from "../lib/animations";
+import { cn } from "../lib/cn";
 
-export function Products() {
-  const navigate = useNavigate();
-  const [filter, setFilter] = useState("all");
-  const [query, setQuery] = useState("");
+export default function Products() {
+  const [search, setSearch] = useState("");
 
-  const filtered = productCategories.filter(
-    (c) => (filter === "all" || c.id === filter) && c.name.toLowerCase().includes(query.toLowerCase())
+  const filtered = categories.filter(
+    (c) =>
+      !search ||
+      c.name.toLowerCase().includes(search.toLowerCase()) ||
+      c.description.toLowerCase().includes(search.toLowerCase()) ||
+      c.products.some((p) => p.toLowerCase().includes(search.toLowerCase()))
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-28 pb-20">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-10">
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Our Products</h1>
-            <p className="text-gray-500 text-sm mt-1">Browse our catalog of medical supplies</p>
-          </div>
-          <div className="flex items-center gap-3 w-full sm:w-auto">
-            <select
-              onChange={(e) => setFilter(e.target.value)}
-              className="px-3 py-2 rounded-xl border border-gray-200 bg-white text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-brand-200 focus:border-brand-400 transition-all"
-            >
-              <option value="all">All Categories</option>
-              {productCategories.map((c) => (
-                <option key={c.id} value={c.id}>{c.name}</option>
-              ))}
-            </select>
-            <div className="relative flex-1 sm:flex-initial">
-              <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+    <motion.div
+      variants={pageTransition}
+      initial="initial"
+      animate="enter"
+      exit="exit"
+    >
+      <section className="bg-gray-50 pt-32 pb-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            title="Our Products"
+            description="Browse our complete catalog of Nipro medical supplies and hospital essentials."
+          />
+
+          <div className="mx-auto mt-10 max-w-md">
+            <div className="relative">
+              <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
               <input
                 type="text"
-                placeholder="Search..."
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                className="w-full sm:w-52 pl-9 pr-3 py-2 rounded-xl border border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-200 focus:border-brand-400 transition-all"
+                placeholder="Search products or categories..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className={cn(
+                  "w-full rounded-full border border-gray-200 bg-white py-2.5 pl-10 pr-4 text-sm",
+                  "placeholder:text-gray-400",
+                  "focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20",
+                  "transition-all duration-200"
+                )}
               />
             </div>
           </div>
-        </div>
 
-        <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" layout>
-          <AnimatePresence mode="popLayout">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={stagger}
+            className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          >
             {filtered.map((cat) => (
-              <motion.div
-                key={cat.id}
-                layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-                className="bg-white rounded-xl border border-gray-200 overflow-hidden cursor-pointer hover:border-brand-200 hover:shadow-sm transition-all"
-                onClick={() => navigate(`/products/${cat.id}`)}
-              >
-                <div className="h-32 bg-gray-50 flex items-center justify-center p-4">
-                  <img src={cat.image} alt={cat.name} className="max-h-full max-w-full object-contain" loading="lazy" />
-                </div>
-                <div className="p-4">
-                  <h3 className="font-semibold text-gray-900 text-sm leading-snug">{cat.name}</h3>
-                </div>
+              <motion.div key={cat.id} variants={fadeUp}>
+                <Link
+                  to={`/products/${cat.id}`}
+                  className="group block"
+                >
+                  <div
+                    className={cn(
+                      "relative overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm",
+                      "transition-all duration-300 hover:shadow-md active:scale-[0.98]"
+                    )}
+                  >
+                    <div className="aspect-[4/3] overflow-hidden bg-gray-50 p-6">
+                      <img
+                        src={cat.image}
+                        alt={cat.name}
+                        className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="p-4">
+                      <span className="inline-block rounded-full bg-brand-50 px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-wider text-brand-700">
+                        Nipro
+                      </span>
+                      <h3 className="mt-2 text-sm font-semibold text-gray-900 leading-snug">
+                        {cat.name}
+                      </h3>
+                      <p className="mt-1 text-xs leading-relaxed text-gray-500 line-clamp-2">
+                        {cat.description}
+                      </p>
+                      <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-brand-600">
+                        {cat.products.length} products
+                        <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
+                      </span>
+                    </div>
+                  </div>
+                </Link>
               </motion.div>
             ))}
-          </AnimatePresence>
-        </motion.div>
+          </motion.div>
 
-        {filtered.length === 0 && (
-          <p className="text-center text-gray-400 py-24">No products found matching your criteria.</p>
-        )}
-      </div>
-    </div>
+          {filtered.length === 0 && (
+            <div className="mt-20 text-center">
+              <p className="text-gray-400">
+                No categories found matching your search.
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
+    </motion.div>
   );
 }

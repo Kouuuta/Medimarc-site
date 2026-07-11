@@ -1,2 +1,5 @@
-import { useReducedMotion } from "framer-motion";
-export { useReducedMotion };
+import { useReducedMotion as useFramerReducedMotion } from "framer-motion";
+
+export function useReducedMotion() {
+  return useFramerReducedMotion();
+}

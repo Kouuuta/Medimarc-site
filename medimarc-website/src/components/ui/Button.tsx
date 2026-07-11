@@ -1,63 +1,58 @@
-import { motion } from "framer-motion";
+import { forwardRef } from "react";
+import { Link } from "react-router-dom";
 import { cn } from "../../lib/cn";
-import { buttonTap, buttonHover } from "../../lib/animations";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "ghost";
+interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: "primary" | "secondary" | "outline" | "ghost";
   size?: "sm" | "md" | "lg";
-  as?: "button" | "a";
   href?: string;
+  to?: string;
 }
 
-export function Button({
-  children,
-  className,
-  variant = "primary",
-  size = "md",
-  as = "button",
-  href,
-  ...props
-}: ButtonProps) {
-  const base =
-    "inline-flex items-center justify-center font-medium rounded-lg transition-colors duration-150 no-underline cursor-pointer";
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant = "primary", size = "md", href, to, children, ...props }, ref) => {
+    const classes = cn(
+      "inline-flex items-center justify-center rounded-full font-semibold transition-all duration-200",
+      {
+        primary:
+          "bg-brand-600 text-white hover:bg-brand-700 shadow-sm hover:shadow-md",
+        secondary:
+          "bg-accent-500 text-white hover:bg-accent-600 shadow-sm hover:shadow-md",
+        outline:
+          "border-2 border-brand-600 text-brand-600 hover:bg-brand-50",
+        ghost: "text-brand-600 hover:bg-brand-50",
+      }[variant],
+      {
+        sm: "px-4 py-1.5 text-xs",
+        md: "px-5 py-2 text-sm",
+        lg: "px-7 py-3 text-base",
+      }[size],
+      className
+    );
 
-  const variants = {
-    primary: "bg-primary text-white hover:bg-primary-dark",
-    secondary: "bg-accent text-white hover:bg-accent-dark",
-    ghost: "bg-gray-100 text-gray-700 hover:bg-gray-200",
-  };
+    if (href) {
+      return (
+        <a href={href} className={classes}>
+          {children}
+        </a>
+      );
+    }
 
-  const sizes = {
-    sm: "px-3 py-1.5 text-sm",
-    md: "px-5 py-2.5 text-base",
-    lg: "px-7 py-3 text-lg",
-  };
+    if (to) {
+      return (
+        <Link to={to} className={classes}>
+          {children}
+        </Link>
+      );
+    }
 
-  const classes = cn(base, variants[variant], sizes[size], className);
-
-  if (as === "a" && href) {
     return (
-      <motion.a
-        href={href}
-        className={classes}
-        whileHover={buttonHover}
-        whileTap={buttonTap}
-        target={href.startsWith("http") ? "_blank" : undefined}
-        rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-      >
+      <button ref={ref} className={classes} {...props}>
         {children}
-      </motion.a>
+      </button>
     );
   }
+);
 
-  return (
-    <motion.button
-      className={classes}
-      whileHover={buttonHover}
-      whileTap={buttonTap}
-      {...(props as any)}
-    >
-      {children}
-    </motion.button>
-  );
-}
+Button.displayName = "Button";
