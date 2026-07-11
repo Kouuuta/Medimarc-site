@@ -1,11 +1,36 @@
 import { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import ProductList from "./components/ProductList";
-import Home from "./components/Home";
-import ProductDetails from "./components/ProductDetails";
-import LoadingScreen from "./components/LoadingScreen";
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import { Navbar } from "./components/layout/Navbar";
+import { Footer } from "./components/layout/Footer";
+import { ScrollProgress } from "./components/layout/ScrollProgress";
+import { Home } from "./pages/Home";
+import { Products } from "./pages/Products";
+import { ProductDetails } from "./pages/ProductDetails";
+import { LoadingScreen } from "./components/sections/LoadingScreen";
+import { pageTransition } from "./lib/animations";
+
+function AnimatedRoutes() {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={location.pathname}
+        variants={pageTransition}
+        initial="initial"
+        animate="enter"
+        exit="exit"
+      >
+        <Routes location={location}>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:categoryId" element={<ProductDetails />} />
+        </Routes>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
 
 function App() {
   const [showLoading, setShowLoading] = useState(() => {
@@ -19,7 +44,7 @@ function App() {
     setTimeout(() => {
       sessionStorage.setItem("hasSeenLoading", "true");
       setShowLoading(false);
-    }, 500); // match fade-out time
+    }, 400);
   };
 
   return (
@@ -31,21 +56,12 @@ function App() {
         />
       )}
       {!showLoading && (
-        <div className="body-web">
+        <div className="flex flex-col min-h-screen overflow-x-clip">
+          <ScrollProgress />
           <Navbar />
-          <div className="main-content">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route
-                path="/products"
-                element={<ProductList onSelectCategory={() => {}} />}
-              />
-              <Route
-                path="/products/:categoryId"
-                element={<ProductDetails />}
-              />
-            </Routes>
-          </div>
+          <main className="flex-1">
+            <AnimatedRoutes />
+          </main>
           <Footer />
         </div>
       )}

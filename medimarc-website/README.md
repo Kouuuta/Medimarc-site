@@ -1,54 +1,79 @@
-# React + TypeScript + Vite
+# Medimarc Trading — Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive website for **Medimarc Trading**, a trusted distributor of high-quality medical and healthcare products in the Philippines.
 
-Currently, two official plugins are available:
+Built with React 19, TypeScript, Vite, Tailwind CSS v4, and Framer Motion.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
 
-## Expanding the ESLint configuration
+| Layer              | Technology                         |
+| ------------------ | ---------------------------------- |
+| Framework          | React 19                           |
+| Language           | TypeScript                         |
+| Build Tool         | Vite 6                             |
+| Styling            | Tailwind CSS v4                    |
+| Animation          | Framer Motion                      |
+| Routing            | React Router DOM v7                |
+| Icons              | Lucide React                       |
+| Package Manager    | npm                                |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Features
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
+- **Animated hero** with parallax scrolling and 3D mouse-tilt interaction
+- **Product catalog** with category filtering and search
+- **Featured products carousel** with drag-to-navigate
+- **Smooth page transitions** using Framer Motion's AnimatePresence
+- **Scroll progress indicator** across the top of the page
+- **Responsive design** — mobile-first with adaptive layouts
+- **Accessible** — reduced motion support, keyboard navigation, proper ARIA labels
+- **Polished micro-interactions** — spring animations, staggered reveals, press feedback
+
+## Project Structure
+
+```
+src/
+├── pages/             # Route-level page components
+│   ├── Home.tsx
+│   ├── Products.tsx
+│   └── ProductDetails.tsx
+├── components/
+│   ├── layout/        # Shell components (Navbar, Footer, ScrollProgress)
+│   ├── sections/      # Page section components (Hero, AboutUs, etc.)
+│   └── ui/            # Reusable primitives (Button, Card, SectionTitle)
+├── hooks/             # Custom React hooks
+├── lib/               # Utilities, animation variants, constants
+├── data/              # Product data and types
+└── ...
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Getting Started
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
+```bash
+# Install dependencies
+npm install
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    "react-x": reactX,
-    "react-dom": reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs["recommended-typescript"].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-});
+# Start dev server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+
+# Lint
+npm run lint
 ```
+
+## Design System
+
+- **Primary**: Blue-600 (`#2563eb`) — the core brand color
+- **Accent**: Violet-500 (`#8b5cf6`) — used sparingly for highlights
+- **Neutrals**: Gray scale (50–900)
+- **Typography**: Inter (body), system sans-serif stack (headings)
+- **Easing**: `cubic-bezier(0.23, 1, 0.32, 1)` for UI interactions
+- **Springs**: `{ duration: 0.5, bounce: 0.15 }` for 3D and hover effects
+
+## About Medimarc Trading
+
+Medimarc Trading provides a wide range of quality and cost-effective hospital supplies since its establishment in 2013. As an authorized distributor of Nipro Medical Corporation, they serve hospitals across Metro Manila and Southern Luzon.
