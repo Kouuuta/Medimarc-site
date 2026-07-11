@@ -27,7 +27,7 @@ export function VisionMission() {
           </p>
         </div>
         <div className="flex-1 w-full">
-          <div className="overflow-hidden rounded-xl border border-white/20 bg-white/10 shadow-sm backdrop-blur-sm">
+          <div className="overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm">
             <img
               src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&q=80"
               alt="Medical laboratory research"
@@ -60,7 +60,7 @@ export function VisionMission() {
           </p>
         </div>
         <div className="flex-1 w-full">
-          <div className="overflow-hidden rounded-xl border border-white/20 bg-white/10 shadow-sm backdrop-blur-sm">
+          <div className="overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm">
             <img
               src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=800&q=80"
               alt="Patient healthcare"

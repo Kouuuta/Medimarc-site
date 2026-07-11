@@ -45,9 +45,8 @@ export function AboutSection() {
   const tab = content[activeTab];
 
   return (
-    <section id="about" className="relative overflow-hidden bg-white py-24">
-      <div className="bg-dot-grid pointer-events-none absolute inset-0" />
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="about" className="bg-white py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           label="About Us"
           title="Building trust through quality healthcare distribution since 2013"

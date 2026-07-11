@@ -32,8 +32,7 @@ export default function Home() {
       <StatsSection />
       <FeaturedProducts />
       <AboutSection />
-      <section className="relative overflow-hidden bg-gradient-to-b from-brand-50/30 to-white py-24">
-        <div className="bg-dot-grid pointer-events-none absolute inset-0" />
+      <section className="bg-gradient-to-b from-brand-50/30 to-white py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <VisionMission />
         </div>

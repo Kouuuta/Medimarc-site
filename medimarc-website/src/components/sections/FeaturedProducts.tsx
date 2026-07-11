@@ -36,8 +36,7 @@ const featured = [
 
 export function FeaturedProducts() {
   return (
-    <section className="relative overflow-hidden bg-white py-24">
-      <div className="pointer-events-none absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle,rgba(37,99,235,0.08)_0%,transparent_60%)]" />
+    <section className="bg-white py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           label="Featured Products"
