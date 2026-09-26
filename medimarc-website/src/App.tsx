@@ -1,39 +1,29 @@
-import { Routes, Route, useLocation } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
-import { useEffect } from "react";
-import { Navbar } from "./components/layout/Navbar";
-import { Footer } from "./components/layout/Footer";
-import { ScrollProgress } from "./components/layout/ScrollProgress";
-import Home from "./pages/Home";
-import Products from "./pages/Products";
-import ProductDetail from "./pages/ProductDetail";
-
-function ScrollToTop() {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return null;
-}
+import { Navbar } from "./components/Navbar";
+import { Hero } from "./components/Hero";
+import { ClientMarquee } from "./components/ClientMarquee";
+import { Catalog } from "./components/catalog/Catalog";
+import { StoryTimeline } from "./components/StoryTimeline";
+import { About } from "./components/About";
+import { QuoteSection } from "./components/quote/QuoteSection";
+import { QuoteTray } from "./components/quote/QuoteTray";
+import { Footer } from "./components/Footer";
+import { ScrollProgress } from "./components/ScrollProgress";
 
 export default function App() {
-  const location = useLocation();
-
   return (
-    <>
-      <ScrollToTop />
+    <div className="min-h-dvh w-full bg-canvas font-sans text-ink">
       <ScrollProgress />
       <Navbar />
-      <main>
-        <AnimatePresence mode="wait">
-          <Routes location={location} key={location.pathname}>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/products/:id" element={<ProductDetail />} />
-          </Routes>
-        </AnimatePresence>
+      <main id="main" className="pb-20 sm:pb-0">
+        <Hero />
+        <ClientMarquee />
+        <Catalog />
+        <StoryTimeline />
+        <About />
+        <QuoteSection />
       </main>
       <Footer />
-    </>
+      <QuoteTray />
+    </div>
   );
 }

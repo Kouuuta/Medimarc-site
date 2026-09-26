@@ -1,81 +1,229 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------ *
+ * Design tokens
+ * Contrast-checked against WCAG AA (4.5:1 body, 3:1 large/UI):
+ *   ink / canvas ............ 14.4:1
+ *   muted / canvas ..........  6.0:1
+ *   cobalt / paper ..........  7.0:1
+ *   paper / ink ............. 15.2:1
+ *   danger / paper ..........  6.3:1
+ * ------------------------------------------------------------------ */
 @theme {
-  --color-brand-50: #eff6ff;
-  --color-brand-100: #dbeafe;
-  --color-brand-200: #bfdbfe;
-  --color-brand-300: #93c5fd;
-  --color-brand-400: #60a5fa;
-  --color-brand-500: #3b82f6;
-  --color-brand-600: #2563eb;
-  --color-brand-700: #1d4ed8;
-  --color-brand-800: #1e40af;
-  --color-brand-900: #1e3a8a;
+  --color-canvas: #eef2f0;
+  --color-paper: #f8faf9;
+  --color-ink: #0c2233;
+  --color-muted: #4b5e6b;
+  --color-line: #d6dedb;
 
-  --color-accent-50: #f0fdfa;
-  --color-accent-100: #ccfbf1;
-  --color-accent-200: #99f6e4;
-  --color-accent-300: #5eead4;
-  --color-accent-400: #2dd4bf;
-  --color-accent-500: #14b8a6;
-  --color-accent-600: #0d9488;
-  --color-accent-700: #0f766e;
-  --color-accent-800: #115e59;
-  --color-accent-900: #134e4a;
+  --color-cobalt: #1f45d6;
+  --color-cobalt-dark: #1636ad;
+  --color-cobalt-soft: #e3e9fb;
 
-  --font-family-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-family-heading: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --color-sky: #8cc8e8;
+  --color-danger: #b42318;
+  --color-danger-soft: #fdecea;
 
-  --ease-smooth: cubic-bezier(0.23, 1, 0.32, 1);
+  --font-display: "Schibsted Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Easing. Never ease-in on UI: it delays the first frame the user watches. */
+  --ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* Tailwind 4 has no --duration-* namespace; a bare duration-<number> is
+     milliseconds. So duration-120 = 120ms. UI motion stays under 300ms and
+     exit is always faster than enter. */
+
+  --shadow-lift: 0 18px 40px -20px rgb(12 34 51 / 0.28);
+  --shadow-sheet: -24px 0 48px -24px rgb(12 34 51 / 0.35);
 }
 
-html {
-  scroll-behavior: smooth;
+/* Hover transforms only on real pointers. Touch fires :hover on tap, which
+   leaves cards stuck in their hovered state after the finger lifts. */
+@custom-variant hover-el (@media (hover: hover) and (pointer: fine));
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    /* Belt-and-braces against a stray wide child forcing a horizontal scrollbar. */
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
+  }
+
+  /* Fluid display type. The revamp jumped between fixed sizes at each
+     breakpoint, which left awkward gaps on tablet widths. */
+  h1 {
+    font-size: clamp(2.6rem, 1.1rem + 6.4vw, 5.25rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 1.2rem + 2.6vw, 3rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  button,
+  input,
+  textarea {
+    font: inherit;
+  }
+
+  ::selection {
+    background-color: var(--color-cobalt);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-cobalt);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  /* Date/time inputs are taller than the rest of the form controls and
+     break the baseline alignment next to our own inputs. */
+  input[type="date"] {
+    min-height: 3rem;
+  }
 }
 
-body {
-  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: 1.6;
+@layer utilities {
+  /* Hairline that reads as a rule rather than a border at 1x. */
+  .rule {
+    border: 0;
+    height: 1px;
+    background-color: color-mix(in srgb, var(--color-ink) 12%, transparent);
+  }
+
+  /* Marquee: constant motion must be linear or it stutters at the loop seam. */
+  @keyframes marquee-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .marquee-track {
+    animation: marquee-scroll 48s linear infinite;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .marquee:hover .marquee-track {
+      animation-play-state: paused;
+    }
+  }
+
+  /* Items dissolve at the container edge instead of hard-clipping. */
+  .marquee-fade {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      black 6rem,
+      black calc(100% - 6rem),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      black 6rem,
+      black calc(100% - 6rem),
+      transparent 100%
+    );
+  }
 }
 
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -1;
-  background:
-    radial-gradient(ellipse 600px 400px at 10% 15%, rgba(37,99,235,0.035) 0%, transparent 60%),
-    radial-gradient(ellipse 500px 500px at 90% 85%, rgba(20,184,166,0.035) 0%, transparent 60%);
-}
-
-h1, h2, h3 {
-  font-family: var(--font-family-heading);
-  letter-spacing: -0.02em;
-  text-wrap: balance;
-}
-
-p, li {
-  text-wrap: pretty;
-}
-
-::selection {
-  background-color: var(--color-brand-500);
-  color: white;
-}
-
-.bg-dot-grid {
-  background-image: radial-gradient(circle, rgba(0,0,0,0.04) 1px, transparent 1px);
-  background-size: 20px 20px;
-}
-
+/* ------------------------------------------------------------------ *
+ * Reduced motion
+ * Fewer, gentler animations - not zero. Opacity and colour still change so
+ * state transitions stay legible; transform and position animation stops.
+ * ------------------------------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Print
+ * Hospital buyers attach the printed quote list to a purchase request.
+ * Navigation and marketing chrome are noise on paper.
+ * ------------------------------------------------------------------ */
+@media print {
+  :root {
+    --color-canvas: #ffffff;
+    --color-paper: #ffffff;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-plain {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .print-list {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.75em;
+    color: #444;
+  }
+
+  section,
+  header,
+  footer,
+  main {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
 }

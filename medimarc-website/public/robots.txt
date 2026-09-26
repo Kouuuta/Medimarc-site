@@ -1,7 +1,4 @@
 User-agent: *
-Disallow: /admin/
-Disallow: /checkout/
-Disallow: /private/
-Allow: /public/
-Allow: /products/
-Sitemap: https://www.medimarctrading.com/sitemap.xml
+Allow: /
+
+Sitemap: https://medimarctrading.com/sitemap.xml
